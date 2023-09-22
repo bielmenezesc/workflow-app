@@ -21,7 +21,7 @@ const workflowSchema = new mongoose.Schema({
     }
 });
 
-const workflow = mongoose.model('workflow', workflowSchema);
+const workflow = mongoose.model('Workflow', workflowSchema);
 
 module.exports = workflow;
 
