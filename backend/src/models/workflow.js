@@ -12,7 +12,7 @@ const workflowSchema = new mongoose.Schema({
     }, endBox: {
         type: String,
         required: true,
-    }, conditionalBox: {
+    }, conditionBox: {
         type: String,
         required: true,
     }, actionBox: {

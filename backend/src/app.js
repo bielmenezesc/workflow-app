@@ -1,17 +1,34 @@
 const express = require('express');
-const router = express.Router();
+const bodyParser = require('body-parser');
 const workflow = require('./models/workflow');
+const useParams = require('react-router-dom');
+const app = express();
+var cors = require('cors');
+require('./db.js');
+
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+
+app.use(cors());
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // route to creat a new workflow
-router.post('/workflows/create', async (req, res) => {
-    const { name, initBox, endBox, conditionalBox, actionBox } = req.body;
+app.post('/workflows/create', async (req, res) => {
+    const { name, initBox, endBox, conditionBox, actionBox } = req.body;
+
+    console.log(name);
+    console.log(initBox);
+    console.log(endBox);
+    console.log(conditionBox);
+    console.log(actionBox);
 
     try {
         const newWorkflow = new workflow({
             name,
             initBox,
             endBox,
-            conditionalBox,
+            conditionBox,
             actionBox
         });
 
@@ -24,7 +41,7 @@ router.post('/workflows/create', async (req, res) => {
 });
 
 // route to edit a workflow
-router.put('/workflows/edit/:id', async (req, res) => {
+app.put('/workflows/edit/:id', async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
 
@@ -33,7 +50,7 @@ router.put('/workflows/edit/:id', async (req, res) => {
             new: true,
         });
         if (!updateWorkflow) {
-            return res.status(404).json({error: 'Workflow not found.'});return res.status(404).json({error: 'Workflow not found.'});
+            return res.status(404).json({error: 'Workflow not found.'});
         }
         res.status(200).json(updateWorkflow);
     } catch (error) {
@@ -42,7 +59,7 @@ router.put('/workflows/edit/:id', async (req, res) => {
 });
 
 // route to delete a workflow
-router.delete('/workflows/delete/:id', async (req, res) => {
+app.delete('/workflows/delete/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -57,19 +74,25 @@ router.delete('/workflows/delete/:id', async (req, res) => {
 });
 
 // route to show details of a workflow
-router.get('/workflow/show/:id', (req, res) => {
-    const { id } = req.params
+app.get('/workflow/show/:id', async (req, res) => {
+    var id = req.params;
+
+    console.log(id);
 
     try {
-        const showWorkflow = await workflow.findById(id);
+        const showWorkflow = await workflow.findOne({"_id": new ObjectId(id)});
+        
+        console.log(showWorkflow);
 
         if (!showWorkflow) {
-            return res.status(404).json({ error: 'Workflow não encontrado.' });
+            return res.status(404).json({ error: 'Workflow not found.' });
         }
-        res.status(200).json(workflow);
+        res.status(200).json(showWorkflow);
     } catch (error) {
         res.status(500).json({ error: 'Error on showing the workflow.' });
     }
 })
 
-module.exports = router;
+app.listen(5000, () => {
+    console.log("app is running");
+});

@@ -5,22 +5,26 @@ import "../App.css";
 function NewWorkflow() {
   const [workflowData, setWorkflowData] = useState({
     name: '',
-    // Outros campos do workflow
+    initBox: '',
+    endBox: '',
+    conditionBox: '',
+    actionBox: ''
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value} = e.target;
     setWorkflowData({ ...workflowData, [name]: value });
   };
 
   const handleSubmit = (e) => {
+    console.log(workflowData);
     e.preventDefault();
-    Axios.post('/workflows', workflowData)
+    Axios.post('http://localhost:5000/workflows/create', workflowData)
       .then((response) => {
-        // Lida com a resposta (por exemplo, redirecionar para a página de detalhes)
+        console.log(response);
       })
       .catch((error) => {
-        // Trate erros de solicitação
+        console.log(error.response.data);
       });
   };
 
@@ -36,7 +40,6 @@ function NewWorkflow() {
             <input
               type="text"
               name="name"
-              value={workflowData.name}
               onChange={handleInputChange}
             />
           </div>
@@ -45,7 +48,6 @@ function NewWorkflow() {
             <input
               type="text"
               name="initBox"
-              value={workflowData.initBox}
               onChange={handleInputChange}
             />
           </div>
@@ -54,7 +56,6 @@ function NewWorkflow() {
             <input
               type="text"
               name="endBox"
-              value={workflowData.endBox}
               onChange={handleInputChange}
             />
           </div>
@@ -62,8 +63,7 @@ function NewWorkflow() {
             <label>Condicion:</label>
             <input
               type="text"
-              name="condicionBox"
-              value={workflowData.condicionBox}
+              name="conditionBox"
               onChange={handleInputChange}
             />
           </div>
@@ -72,7 +72,6 @@ function NewWorkflow() {
             <input
               type="text"
               name="actionBox"
-              value={workflowData.actionBox}
               onChange={handleInputChange}
             />
           </div>
