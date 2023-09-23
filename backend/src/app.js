@@ -76,15 +76,13 @@ app.get('/workflow/edit/:id', async (req, res) => {
 })
 
 // route to delete a workflow
-app.delete('/workflows/delete/:id', async (req, res) => {
-    const { id } = req.params;
+app.delete('/workflow/delete/:id', async (req, res) => {
+    const id = req.params;
 
     try {
-        const deleteWorkflow = await workflow.findByIdAndRemove(id);
-        if (!deleteWorkflow) {
-            return res.status(404).json({error: 'Workflow not found.'});
-        }
-        res.status(204).send();
+        await workflow.deleteOne({"_id": new ObjectId(id)});
+
+        res.status(200).json({ message: 'Workflow deleted with success' });;
     } catch (error) {
         res.status(500).json({ error: 'Error on deleting the workflow.' });
     }
