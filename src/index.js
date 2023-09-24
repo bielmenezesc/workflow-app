@@ -4,7 +4,7 @@ import './index.css';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App';
+import ShowAll from "./routes/showAll";
 import NewWorkflow from "./routes/newWorkflow";
 import EditWorkflow from "./routes/editWorkflow";
 import DeleteWorkflow from "./routes/deleteWorkflow";
@@ -13,7 +13,7 @@ import ShowWorkflow from "./routes/showWorkflow";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <ShowAll />
   },
   {
     path: "workflow/create",

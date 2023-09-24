@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const workflow = require('./models/workflow');
-const useParams = require('react-router-dom');
 const app = express();
 var cors = require('cors');
 require('./db.js');
@@ -27,7 +26,7 @@ app.post('/workflows/create', async (req, res) => {
 
         res.status(201).json(newWorkflow);
     } catch (error) {
-        res.status(500).json({error: 'Error on creating the workflow.'});
+        res.status(500).json({ error: 'Error on creating the workflow.' });
     }
 });
 
@@ -37,10 +36,10 @@ app.put('/workflow/edit/:id', async (req, res) => {
     const { name, flows } = req.body;
 
     try {
-        const oldWorkflow = await workflow.findOne({"_id": new ObjectId(id)});
+        const oldWorkflow = await workflow.findOne({ "_id": new ObjectId(id) });
 
         if (!oldWorkflow) {
-            return res.status(404).json({error: 'Workflow not found.'});
+            return res.status(404).json({ error: 'Workflow not found.' });
         }
 
         oldWorkflow.name = name;
@@ -58,7 +57,7 @@ app.get('/workflow/edit/:id', async (req, res) => {
     var id = req.params;
 
     try {
-        const showWorkflow = await workflow.findOne({"_id": new ObjectId(id)});
+        const showWorkflow = await workflow.findOne({ "_id": new ObjectId(id) });
 
         if (!showWorkflow) {
             return res.status(404).json({ error: 'Workflow not found.' });
@@ -74,7 +73,7 @@ app.delete('/workflow/delete/:id', async (req, res) => {
     const id = req.params;
 
     try {
-        await workflow.deleteOne({"_id": new ObjectId(id)});
+        await workflow.deleteOne({ "_id": new ObjectId(id) });
 
         res.status(200).json({ message: 'Workflow deleted with success' });;
     } catch (error) {
@@ -87,7 +86,7 @@ app.get('/workflow/show/:id', async (req, res) => {
     var id = req.params;
 
     try {
-        const showWorkflow = await workflow.findOne({"_id": new ObjectId(id)});
+        const showWorkflow = await workflow.findOne({ "_id": new ObjectId(id) });
 
         if (!showWorkflow) {
             return res.status(404).json({ error: 'Workflow not found.' });
@@ -97,6 +96,18 @@ app.get('/workflow/show/:id', async (req, res) => {
         res.status(500).json({ error: 'Error on showing the workflow.' });
     }
 })
+
+// Rota para buscar todos os workflows
+app.get('/workflow/showAll', async (req, res) => {
+    try {
+        const workflows = await workflow.find(); // Busque todos os workflows no banco de dados
+
+        res.status(200).json(workflows); // Envie os workflows como resposta JSON
+    } catch (error) {
+        console.error('Erro ao buscar workflows:', error);
+        res.status(500).json({ error: 'Erro ao buscar workflows.' });
+    }
+});
 
 app.listen(5000, () => {
     console.log("app is running");
