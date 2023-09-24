@@ -9,6 +9,7 @@ import NewWorkflow from "./routes/newWorkflow";
 import EditWorkflow from "./routes/editWorkflow";
 import DeleteWorkflow from "./routes/deleteWorkflow";
 import ShowWorkflow from "./routes/showWorkflow";
+import HowToUse from "./routes/howToUse";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "workflow/delete/:id",
     element: <DeleteWorkflow />
+  },
+  {
+    path: "howToUse",
+    element: <HowToUse/>
   }
 ]);
 

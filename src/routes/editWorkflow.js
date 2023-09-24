@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "../App.css";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
+import Layout from '../components/layout.js';
 
 function EditWorkflow() {
+  const navigate = useNavigate();
   const [workflowData, setWorkflowData] = useState({});
   const workflowId = useParams(); // Obtém o ID do workflow a ser editado
 
@@ -28,6 +30,7 @@ function EditWorkflow() {
     Axios.put(`http://localhost:5000/workflow/edit/${workflowId.id}`, workflowData)
       .then((response) => {
         console.log(response.data);
+        navigate(`/workflow/show/${workflowId.id}`);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -36,8 +39,9 @@ function EditWorkflow() {
 
   return (
     <div className="App">
+      <Layout></Layout>
       <header className="App-header">
-        <h2>Editar Workflow</h2>
+        <h2>Edit Workflow</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Name:</label>
@@ -50,12 +54,12 @@ function EditWorkflow() {
           </div>
           <div>
             <label>Flow:</label>
-            <input
+            <textarea
               type="text"
               name="flows"
               value={workflowData.flows}
-              onChange={handleInputChange}
-            />
+              onChange={handleInputChange}>
+            </textarea>
           </div>
           <button type="submit">Save Editions</button>
         </form>

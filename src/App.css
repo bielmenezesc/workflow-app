@@ -1,38 +1,122 @@
+:root {
+  --primary-color: linear-gradient(-225deg, #DFFFCD 0%, #90F9C4 48%, #39F3BB 100%);
+  --secundary-color: black; 
+  --tertiary-color: #5272ee;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  background-image: var(--primary-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--secundary-color);
 }
 
-.App-link {
-  color: #61dafb;
+
+header {
+  background-color: white;
+  width: 100%;
+  padding: 32px;
+  box-sizing: border-box;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.links {
+  font-size: 22px;
 }
+
+.links a + a {
+  margin-left: 32px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #777;
+  position: relative;
+}
+
+.links a.active {
+  font-weight: bold;
+  color: var(--tertiary-color);
+}
+
+.links a:hover {
+  color: var(--tertiary-color);
+}
+
+.links a::after {
+  content: "";    
+  width: 0;
+  height: 2px;
+  background-color: var(--tertiary-color);
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+
+.links a:hover::after {
+  width: 100%;
+  transition: width 700ms ease-in-out;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 1em 0 0.1em 0;
+}
+
+
+input, textarea {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  width: 30%;
+}
+
+button {
+  font-size: 25px;
+  background-color: #5272ee;
+  color: #ffffff;
+  border: none;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  outline: none;
+  margin: 1em 0;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.line {
+  border-bottom: 1px solid #777;
+  width: 40%;
+  margin: 0 auto;
+}
+
+
+.infoBox {
+  border: 4px solid #5272ee;
+  border-radius: 0.5em;
+  width: 50%;
+  font-size: 18px;
+  background-color: white;
+  margin: 100px auto;
+}
+a#howToUse{
+  text-decoration: none;
+  font-size: calc(2px + 2vmin);;
+  color: #777;
+}
+
+a#howToUse:hover {
+  text-decoration: underline;
+}
+
