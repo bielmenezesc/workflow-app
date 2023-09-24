@@ -7,10 +7,9 @@ import Layout from '../components/layout.js';
 
 const GraphRenderer = () => {
   const [workflowData, setWorkflowData] = useState({});
-  const workflowId = useParams(); // Obtém o ID do workflow a ser exibido
+  const workflowId = useParams();
 
   useEffect(() => {
-    // Carregue os detalhes do workflow pelo ID
     Axios.get(`http://localhost:5000/workflow/show/${workflowId.id}`)
       .then((response) => {
         setWorkflowData(response.data);

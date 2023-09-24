@@ -70,7 +70,6 @@ describe('Workflow API', () => {
   });
 
   it('should get all workflows', async () => {
-    // Crie alguns workflows fictícios para testar
     const workflow1 = {
       name: 'Workflow 1',
       flows: '"start" -> "action 1" -> "action 2" -> "end";'
@@ -81,7 +80,6 @@ describe('Workflow API', () => {
       flows: '"start" -> "action 1" -> "action 2" -> "action 3" -> "end";'
     };
 
-    // Crie os workflows fictícios no sistema
     await request(app)
       .post('/workflows/create')
       .send(workflow1)
@@ -92,12 +90,10 @@ describe('Workflow API', () => {
       .send(workflow2)
       .expect(201);
 
-    // Consulte todos os workflows
     const response = await request(app)
       .get('/workflow/showAll')
       .expect(200);
 
-    // Verifique se o retorno é uma matriz e contém os workflows criados
     expect(response.body).to.be.an('array');
     expect(response.body).to.have.lengthOf.at.least(2);
     expect(response.body.some((workflow) => workflow.name === 'Workflow 1')).to.be.true;

@@ -6,7 +6,7 @@ import Layout from '../components/layout.js';
 
 function DeleteWorkflow() {
   const navigate = useNavigate();
-  const workflowId = useParams(); // Obtém o ID do workflow a ser excluído
+  const workflowId = useParams();
 
   const handleDelete = () => {
     Axios.delete(`http://localhost:5000/workflow/delete/${workflowId.id}`)
@@ -23,8 +23,8 @@ function DeleteWorkflow() {
     <div className="App">
       <Layout></Layout>
       <header className="App-header">
-        <h2>Deletar Workflow</h2>
-        <p>Tem certeza de que deseja excluir este workflow?</p>
+        <h2>Delete Workflow</h2>
+        <p>You sure about deleting this workflow?</p>
         <div><button onClick={handleDelete}>Delete</button></div>
       </header>
     </div>

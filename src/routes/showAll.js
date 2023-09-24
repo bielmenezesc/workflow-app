@@ -8,7 +8,6 @@ const WorkflowList = () => {
   const [workflows, setWorkflows] = useState([]);
 
   useEffect(() => {
-    // Fazer uma solicitação GET para o backend para obter os workflows
     axios.get('http://localhost:5000/workflow/showAll')
       .then((response) => {
         setWorkflows(response.data);
