@@ -6,16 +6,7 @@ const workflowSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-    }, initBox: {
-        type: String,
-        required: true,
-    }, endBox: {
-        type: String,
-        required: true,
-    }, conditionBox: {
-        type: String,
-        required: true,
-    }, actionBox: {
+    }, flows: {
         type: String,
         required: true,
     }

@@ -15,15 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // route to creat a new workflow
 app.post('/workflows/create', async (req, res) => {
-    const { name, initBox, endBox, conditionBox, actionBox } = req.body;
+    const { name, flows } = req.body;
 
     try {
         const newWorkflow = new workflow({
             name,
-            initBox,
-            endBox,
-            conditionBox,
-            actionBox
+            flows
         });
 
         await newWorkflow.save();
@@ -37,7 +34,7 @@ app.post('/workflows/create', async (req, res) => {
 // route to edit a workflow
 app.put('/workflow/edit/:id', async (req, res) => {
     const id = req.params;
-    const { name, initBox, endBox, conditionBox, actionBox } = req.body;
+    const { name, flows } = req.body;
 
     try {
         const oldWorkflow = await workflow.findOne({"_id": new ObjectId(id)});
@@ -47,10 +44,7 @@ app.put('/workflow/edit/:id', async (req, res) => {
         }
 
         oldWorkflow.name = name;
-        oldWorkflow.initBox = initBox;
-        oldWorkflow.endBox = endBox;
-        oldWorkflow.conditionBox = conditionBox;
-        oldWorkflow.actionBox = actionBox;
+        oldWorkflow.flows = flows;
 
         await oldWorkflow.save();
 

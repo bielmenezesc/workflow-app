@@ -5,10 +5,7 @@ import "../App.css";
 function NewWorkflow() {
   const [workflowData, setWorkflowData] = useState({
     name: '',
-    initBox: '',
-    endBox: '',
-    conditionBox: '',
-    actionBox: ''
+    flows: ''
   });
 
   const handleInputChange = (e) => {
@@ -44,34 +41,10 @@ function NewWorkflow() {
             />
           </div>
           <div>
-            <label>Beggining:</label>
+            <label>Flow:</label>
             <input
               type="text"
-              name="initBox"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>End:</label>
-            <input
-              type="text"
-              name="endBox"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>Condicion:</label>
-            <input
-              type="text"
-              name="conditionBox"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>Action:</label>
-            <input
-              type="text"
-              name="actionBox"
+              name="flows"
               onChange={handleInputChange}
             />
           </div>

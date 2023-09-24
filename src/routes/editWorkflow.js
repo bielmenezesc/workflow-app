@@ -34,8 +34,6 @@ function EditWorkflow() {
       });
   };
 
-  console.log(workflowData);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -51,38 +49,11 @@ function EditWorkflow() {
             />
           </div>
           <div>
-            <label>Beggining:</label>
+            <label>Flow:</label>
             <input
               type="text"
-              name="initBox"
-              value={workflowData.initBox}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>Condicion:</label>
-            <input
-              type="text"
-              name="conditionBox"
-              value={workflowData.conditionBox}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>Action:</label>
-            <input
-              type="text"
-              name="actionBox"
-              value={workflowData.actionBox}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>End:</label>
-            <input
-              type="text"
-              name="endBox"
-              value={workflowData.endBox}
+              name="flows"
+              value={workflowData.flows}
               onChange={handleInputChange}
             />
           </div>
