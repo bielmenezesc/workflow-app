@@ -1,6 +1,8 @@
 # Workflow Management App
 
 This is a simple workflow management application built with React and Node.js. It allows users to create, edit, see an specifc workflow grafic representation, see all workflows, and delete an workflow.
+![image](https://github.com/bielmenezesc/workflow-app/assets/49683467/04d9dd35-80c3-42c9-9846-6fe8e4125589)
+
 
 ## Getting Started
 
