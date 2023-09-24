@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# Workflow Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple workflow management application built with React and Node.js. It allows users to create, edit, see an specifc workflow grafic representation, see all workflows, and delete an workflow.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+These instructions will guide you on how to run the application in different environments.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before running the application, make sure you have the following prerequisites installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js: [https://nodejs.org/](https://nodejs.org/)
+- npm (Node Package Manager): [https://www.npmjs.com/](https://www.npmjs.com/)
+- Git (optional): [https://git-scm.com/](https://git-scm.com/)
 
-### `npm test`
+### Development Environment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the app in a development environment, follow these steps:
 
-### `npm run build`
+1. Clone the repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/yourusername/workflow-app.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate to the project directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   cd workflow-app
+   ```
 
-### `npm run eject`
+3. Install server dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   cd backend
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Install client dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   cd ..
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Start the server:
 
-## Learn More
+   ```bash
+   cd backend
+   node .src/app.js
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. Start the client (in a separate terminal):
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   cd ..
+   npm start
+   ```
 
-### Code Splitting
+7. Open your web browser and go to [http://localhost:3000](http://localhost:3000) to access the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Production Environment
 
-### Analyzing the Bundle Size
+To run the app in a production environment, you'll need to build and deploy it to a web server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clone the repository to your server:
 
-### Making a Progressive Web App
+   ```bash
+   git clone https://github.com/yourusername/workflow-app.git
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. Navigate to the project directory:
 
-### Advanced Configuration
+   ```bash
+   cd workflow-app
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Install server dependencies:
 
-### Deployment
+   ```bash
+   cd backend
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4. Install client dependencies:
 
-### `npm run build` fails to minify
+   ```bash
+   cd ..
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Build the client for production:
+
+   ```bash
+   npm run build
+   ```
+
+6. Configure your web server (e.g., Nginx, Apache) to serve the contents of the `client/build` directory as static files.
+
+7. Start your web server and make the app accessible over the internet.
+
+### Advantages of This Configuration
+
+- **Development Environment:** Running the app locally allows for rapid development, debugging, and testing. You can leverage hot-reloading and other development features.
+
+- **Production Environment:** Deploying the app in a production environment ensures optimal performance and security. It also allows for scalability to accommodate a larger user base.
+
+### External Dependencies
+
+- **React:** Used for building the user interface due to its flexibility and component-based architecture.
+
+- **Node.js:** Used for the server backend, providing a non-blocking, event-driven environment.
+
+- **Express.js:** Used to create a robust and scalable API for handling workflow data.
+
+### Testing
+
+- **Testing:** Supertest for backend testing. Automated tests help ensure the reliability of the application.
+
+
+### Decisions Made
+
+- **Client-Server Architecture:** A client-server architecture to separate concerns, making the application more modular and maintainable.
+
+- **React for Front-End Framework:** Was chosen to build the front-end of the application using React, a popular JavaScript library for building user interfaces. React's component-based architecture, virtual DOM, and strong community support made it an ideal choice for creating a dynamic and responsive user interface.
+
+- **Node.js for Backend:** Was the technology chosen for building the back-end server. Its non-blocking, event-driven architecture is well-suited for handling concurrent requests and managing the application's business logic. Additionally, Node.js integrates seamlessly with JavaScript, promoting code reuse between the front end and back end.
+
+- **MongoDB for Database:** For data storage and management, it was adopted MongoDB, a NoSQL database. Its flexible schema-less design allows efficient storage and retrieval of structured data, making it an excellent choice for managing workflows and associated data.
+
+- **React Router DOM for Routing:** To handle client-side routing and navigation within the single-page application, was opted for React Router DOM. This library provides a robust solution for defining and managing routes, allowing users to seamlessly navigate between different views and components.
+
+- **Axios for HTTP Requests:** Axios was selected as the HTTP client library for making requests to the server and external APIs. Its simplicity, promise-based approach, and built-in support for request and response transformations streamlined data retrieval and submission.
+
+- **Graphviz for Data Visualization:** To generate graphical representations of workflows, it was integrated the Graphviz library. Graphviz enables the visualization of complex workflows in a clear and concise manner, enhancing the user experience and aiding in understanding workflow structures.
+
+- **Git for Version Control:** Git enables version control, collaboration, and tracking of code changes.
+
+### Workflow Logic
+
+In the pursuit of creating an swift but powerfull project, I embraced a streamlined approach to workflows. Leveraging the concept of Graphviz, I designed a user-friendly system where users can define their workflow flow effortlessly using a straightforward syntax. This workflow is securely stored, and when a request is made to visualize it graphically, Graphviz comes into play. It effortlessly translates this flow into a visually appealing and powerful workflow demonstration.
+
+### Future Growth
+
+This application is designed with scalability in mind, allowing for future enhancements, such as additional workflow features, user management, and integration with other tools.
+
+---
+Feito com ❤️ por Gabriel Menezes Cabral
